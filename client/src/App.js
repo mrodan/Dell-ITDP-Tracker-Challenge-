@@ -1,9 +1,22 @@
+import React from 'react';
+import { Container } from 'react-bootstrap'
+import Header from './components/header/Header'
+import Footer from './components/footer/Footer'
+import HomeScreen from './screens/home/HomeScreen'
+
+
 function App() {
   return (
     <>
-      <h1>Welcome to Dell ITDP Tracker</h1>
+      <Header/>
+      <main className='py-3'>
+        <Container>
+          <HomeScreen/>
+        </Container>
+      </main>
+      <Footer/>
     </>
-  )
+  );
 }
 
 export default App;
