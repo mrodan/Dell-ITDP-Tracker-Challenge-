@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import Rating from '../rating/Rating'
 
@@ -7,16 +8,16 @@ import Rating from '../rating/Rating'
 const EventCard = ({ event }) => {
     return (
         <Card className='my-3 p-3 rounded'>
-            <a href={`/event/${event._id}`}>
+            <Link to={`/event/${event._id}`}>
                 <Card.Img src={event.image} variant='top' />
-            </a>
+            </Link>
             
             <Card.Body>
-                <a href={`/event/${event._id}`}>
+                <Link to={`/event/${event._id}`}>
                     <Card.Title as='div'>
                         <strong>{event.name}</strong>
                     </Card.Title>
-                </a>
+                </Link>
 
                 <Card.Text as='div'>
                     <Rating
@@ -25,6 +26,7 @@ const EventCard = ({ event }) => {
                     />
                 </Card.Text>
 
+                <h3>DATE & TIME</h3>
                 <h3>JOIN BTN</h3>
             </Card.Body>
 
