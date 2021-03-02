@@ -1,0 +1,37 @@
+{
+  "name": "dell-itdp-tracker",
+  "version": "1.0.0",
+  "description": "\"MERN Stack App to track Dell ITDP participation\"",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server/server.js",
+    "server": "nodemon backend/server/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "entries:import": "node backend/seeder.js",
+    "entries:delete": "node backend/seeder.js -d",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrodan/Dell-ITDP-Tracker-Challenge-.git"
+  },
+  "author": "Moises Rodan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrodan/Dell-ITDP-Tracker-Challenge-/issues"
+  },
+  "homepage": "https://github.com/mrodan/Dell-ITDP-Tracker-Challenge-#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.15",
+    "mongoose-timestamps": "0.0.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0"
+  }
+}
