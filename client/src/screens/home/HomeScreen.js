@@ -11,9 +11,10 @@ const HomeScreen = () => {
     useEffect(() => {
         // inside func to avoid warning
         const fetchFeaturedEvents = async () => {
-            const res = await axios.get('/api/events')
+            const res = await axios.get('/events/featured')
     
             setFeaturedEvents(res.data);
+            console.log(featuredEvents);
         }
 
         fetchFeaturedEvents();

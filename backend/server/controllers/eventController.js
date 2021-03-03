@@ -10,6 +10,7 @@ import asyncHandler from 'express-async-handler'
 export const getFeaturedEvents = asyncHandler(async (req, res) => {
     const featuredEvents = await Event.find({});
     res.json(featuredEvents);
+    console.log(featuredEvents);
 })
 
 

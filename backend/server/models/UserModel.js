@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     mobile: { type: String, default: '123', trim: true },
     image: { type: String, default: "" },
     department: { type: String, default: 'None'},
-    role: { type: String, required: true, default: 'participant'},
+    role: { type: String, default: 'P'},
     quarterGoal: {type: Number, default: 2}
 }, { timestamps: true })
 

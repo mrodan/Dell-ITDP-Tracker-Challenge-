@@ -31,22 +31,11 @@ passport.use(new JwtStrategy({
 // Login
 export const LocalStrategy = passportLocal.Strategy;
 passport.use(new LocalStrategy( (username, password, done) => {
-    User.findOne({username}, (err, userr) => {
+    User.findOne({username}, (err, user) => {
         if (err)
             return done(err); // Query error
-        if (!userr)
+        if (!user)
             return done(null, false); // no user exists
-        userr.comparePassword(password, done); // Check if password is correct
+        user.comparePassword(password, done); // Check if password is correct
     });
 }));
-
-
-/* LOGIN WITH EMAIL
-export const LocalStrategy = passportLocal.Strategy;
-passport.use(new LocalStrategy ({
-    usernameField = 'email',
-    passwordField = 'password'
-}, (username, password, done) => {
-
-}))
-*/
