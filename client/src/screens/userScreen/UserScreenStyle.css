@@ -1,0 +1,13 @@
+.profile-image {
+  height: 351px;
+  width: 351px;
+}
+
+.progress-bar {
+  width: 60%;
+  height: 16px;
+}
+
+.try {
+  display: block;
+}

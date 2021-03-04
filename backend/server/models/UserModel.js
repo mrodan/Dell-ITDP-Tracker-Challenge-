@@ -9,8 +9,11 @@ const userSchema = new mongoose.Schema({
     mobile: { type: String, default: '123', trim: true },
     image: { type: String, default: "" },
     department: { type: String, default: 'None'},
+    position: { type: String, default: 'None' },
     role: { type: String, default: 'P'},
-    quarterGoal: {type: Number, default: 2}
+    quarterGoal: { type: Number, default: 2 },
+    yearlyGoal: { type: Number },
+    departmentGoal: { type: Number } // Ideally would be a Department Schema apart
 }, { timestamps: true })
 
 // Runs before save
@@ -27,6 +30,24 @@ userSchema.pre('save', (function (next) {
         this.password = hashedPassword;
         next();
     });
+
+    // Yearly Goal
+    this.yearlyGoal = (quarterGoal * 4) + 2;
+
+    /*
+    // Department Goal
+    if (this.department === 'Engineering')
+        this.departmentGoal = 
+    else if (this.department === 'Human Resources')
+        this.departmentGoal = 
+    else if (this.department === 'Communications')
+        this.departmentGoal = 
+    else if (this.department === 'Digital')
+        this.departmentGoal = 
+    else
+        this.departmentGoal = 0
+    */
+
 }));
 
 

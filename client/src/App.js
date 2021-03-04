@@ -9,6 +9,7 @@ import Footer from './components/footer/Footer'
 import HomeScreen from './screens/home/HomeScreen'
 import LoginScreen from './screens/login/LoginScreen'
 import RegisterScreen from './screens/register/RegisterScreen'
+import UserScreen from './screens/userScreen/UserScreen'
 import EventScreen from './screens/event/EventScreen'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <PublicRoute path='/login' component={LoginScreen}/>
           <PublicRoute path='/register' component={RegisterScreen}/>
           <PrivateRoute path='/events/:id' roles={["P", "CL", "PM"]} component={EventScreen}/>
+          <PrivateRoute path='/users/:id' roles={["P", "CL", "PM"]} component={UserScreen}/>
         </Container>
       </main>
       <Footer/>

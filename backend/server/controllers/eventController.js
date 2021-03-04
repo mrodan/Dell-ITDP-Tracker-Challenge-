@@ -16,7 +16,7 @@ export const getFeaturedEvents = asyncHandler(async (req, res) => {
 
 // @desc Fetch event by id
 // @route GET /events/:id
-// @access P, CL & PM (any user logged in)
+// @access Authenticated
 export const getEventById = asyncHandler(async (req, res) => {
     const event = await Event.findById(req.params.id);
     
@@ -70,6 +70,9 @@ export const newEvent = async (req, res) => {
 }
 
 
+// @desc Register to Event
+// @route POST /events/register
+// @access P (only profile owner), CL & PM
 export const registerToEvent = async (req, res) => {
     try {
         // Check req data
@@ -80,14 +83,12 @@ export const registerToEvent = async (req, res) => {
         })
 
         // Get participant
-        await User.find({ $or: [{ username: req.body.participant }, { fullName: req.body.participant }, { email: req.body.participant }] })
+        await User.findOne({$or: [{ username: req.body.participant }, { fullName: req.body.participant }, { email: req.body.participant }]})
             .then(user => {
                 if (user)
-                    newParticipation.participant = mongoose.Types.ObjectId(user._id);
+                    newParticipation.participant = user;
                 else
                     res.status(422).json({ message: { messageBody: "No user found", messageError: true } });
-
-                    console.log("PARTICIPANT -> " + user._id);
             })
             .catch(err => {
                 //console.log(err);
@@ -112,34 +113,11 @@ export const registerToEvent = async (req, res) => {
                 res.status(200).json({ message: { messageBody: "Succesfully registered", messageError: false } });
             })
             .catch(err => {
-                //console.log(err);
+                console.log(err);
                 res.status(500).json({ message: { messageBody: "Error has occured (saving Participation)", messageError: true } });
             })
-
-        /*
-        // Check if participation existed. If not, save it
-        await Participation.find(newParticipation)
-            .then(participation => {
-                if (participation)
-                    res.status(500).json({ message: { messageBody: "Participant already registered", messageError: true } });
-                else {
-                    newParticipation.save()
-                        .then(participation => {
-                            res.status(200).json({ message: { messageBody: "Succesfully registered", messageError: false } });
-                        })
-                        .catch(err => {
-                            //console.log(err);
-                            res.status(500).json({ message: { messageBody: "Error has occured (saving Participation)", messageError: true } });
-                        })
-                }
-            })
-            .catch(error => {
-                //console.log(err);
-                res.status(500).json({ message: { messageBody: "Error has occured (checking if participation exists)", messageError: true } });
-            })
-            */
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         res.status(500).json({ message: { messageBody: "Error has occured", messageError: true } });
     }
 }

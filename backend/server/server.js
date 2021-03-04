@@ -5,8 +5,8 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import connectMongodb from './config/mongodb.js';
 import authRouter from './routes/authRouter.js'
-import eventRoutes from './routes/eventRouter.js'
-import eventsTest from './data/eventsTest.js';
+import eventRouter from './routes/eventRouter.js'
+import userRouter from './routes/userRoute.js'
 
 
 dotenv.config(); // Init dotenv
@@ -33,7 +33,8 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/auth', authRouter);
-app.use('/events', eventRoutes);
+app.use('/events', eventRouter);
+app.use('/users', userRouter);
 
 
 // Server connection

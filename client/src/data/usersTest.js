@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 
 const usersTest = [
     {
+        _id: "1",
         username: "ProgManager",
         fullName: "Program Manager",
         password: bcrypt.hashSync('abc123', 10),
@@ -13,6 +14,7 @@ const usersTest = [
         quarterGoal: 2
     },
     {
+        id_: "2",
         username: "CommLead",
         fullName: "Comm Lead",
         password: bcrypt.hashSync('abc123', 10),
