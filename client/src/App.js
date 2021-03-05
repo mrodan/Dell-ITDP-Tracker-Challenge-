@@ -11,6 +11,7 @@ import LoginScreen from './screens/login/LoginScreen'
 import RegisterScreen from './screens/register/RegisterScreen'
 import UserScreen from './screens/userScreen/UserScreen'
 import EventScreen from './screens/event/EventScreen'
+import NewEventScreen from './screens/newEvent/NewEventScreen'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <PublicRoute path='/register' component={RegisterScreen}/>
           <PrivateRoute path='/events/:id' roles={["P", "CL", "PM"]} component={EventScreen}/>
           <PrivateRoute path='/users/:id' roles={["P", "CL", "PM"]} component={UserScreen}/>
+          <PrivateRoute path='/newevent' roles={["PM"]} component={NewEventScreen}/>
         </Container>
       </main>
       <Footer/>

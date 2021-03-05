@@ -5,8 +5,13 @@ import axios from 'axios';
 import { LinkContainer } from 'react-router-bootstrap'; // Allows us to wrap bootstrap components
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { Person, Headset, BoxArrowRight } from 'react-bootstrap-icons';
-import UserSearch from './UserSearch'
+import {
+  Person,
+  Headset,
+  BoxArrowRight,
+  PlusCircle,
+} from 'react-bootstrap-icons';
+import UserSearch from './UserSearch';
 import './HeaderStyle.css';
 
 const Header = () => {
@@ -62,10 +67,13 @@ const Header = () => {
                 {searchUsersData.map((user) => (
                   <li key={user._id}>
                     <Link
-                      style={{ color: 'inherit' }}
+                      style={{ color: 'inherit', size: 'parent' }}
                       to={`/users/${user._id}`}
                     >
-                      <UserSearch username={user.username} fullName={user.fullName} />
+                      <UserSearch
+                        username={user.username}
+                        fullName={user.fullName}
+                      />
                     </Link>
                   </li>
                 ))}
@@ -100,10 +108,10 @@ const Header = () => {
     return (
       <>
         {user.role === 'PM' ? (
-          <Link className="btn-link" to="/#AdminPage">
+          <Link className="btn-link" to="/newevent">
             <button className="nav-btn">
-              <Person />
-              Admin
+              <PlusCircle />
+              New Event
             </button>
           </Link>
         ) : null}
@@ -136,8 +144,15 @@ const Header = () => {
     <div>
       <Navbar className="navbar" collapseOnSelect>
         <Container>
+          <img
+            style={{ height: '5%', width: '5%' }}
+            src="https://i.ibb.co/8mg4mKd/92489.png"
+            alt="logo"
+          />
           <LinkContainer to="/">
-            <Navbar.Brand>Dell IT Development Program</Navbar.Brand>
+            <Navbar.Brand className="title navbar-brand">
+              &nbsp; IT Development Program
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

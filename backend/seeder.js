@@ -30,7 +30,7 @@ const importUserEventEntries = async () => {
     });
     await Event.insertMany(newEvents);
 
-    await Participation.insertMany(participationEntries).populate('event');
+    //await Participation.insertMany(participationEntries).populate('event');
 
     // Print entries and exit
     console.log('Entries imported');

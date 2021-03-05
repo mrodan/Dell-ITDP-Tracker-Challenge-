@@ -10,7 +10,6 @@ import asyncHandler from 'express-async-handler'
 export const getFeaturedEvents = asyncHandler(async (req, res) => {
     const featuredEvents = await Event.find({});
     res.json(featuredEvents);
-    console.log(featuredEvents);
 })
 
 
@@ -54,7 +53,6 @@ export const newEvent = async (req, res) => {
 
         // Save new event
         try {
-            console.log("pre-save");
             await newEvent.save()
                 .then(event => {
                     res.status(200).json({ message: { messageBody: "Succesfully created", messageError: false } });

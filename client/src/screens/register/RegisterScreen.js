@@ -28,7 +28,6 @@ const RegisterScreen = (props) => {
   }, []);
 
   const resetForm = () => {
-    console.log("RESETED")
     setUser({
       username: '',
       fullName: '',
@@ -44,7 +43,6 @@ const RegisterScreen = (props) => {
     e.preventDefault();
     AuthService.register(user).then((data) => {
       resetForm();
-      console.log("RESETED")
     });
   };
 
