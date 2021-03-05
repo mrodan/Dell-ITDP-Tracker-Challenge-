@@ -19,22 +19,22 @@ export const register = (req, res) => {
                 newUser.save()
                     .then(user => {
                         // After registering, it gets logged in
-                        const { _id, username, role } = user;
-                        const token = signToken(_id); // Create jwt token to sign in
-                        res.cookie('access_token', token, { httpOnly: true, sameSite: true });
-                        res.status(201).json({ isAuthenticated: true, user: { username, role }, message: { messageBody: "Account succesfully created & logged in", messageError: false } });
+                        //const { _id, username, role } = user;
+                        //const token = signToken(_id); // Create jwt token to sign in
+                        //res.cookie('access_token', token, { httpOnly: true, sameSite: true });
+                        //res.status(201).json({ isAuthenticated: true, user: { username, role }, message: { messageBody: "Account succesfully created & logged in", messageError: false } });
                         
                         // Only register
-                        //res.status(201).json({ message: { messageBody: "Account succesfully created", messageError: false } });
+                        res.status(201).json({ message: { messageBody: "Account succesfully created", messageError: false } });
                     })
                     .catch(err => {
-                        //console.log(err);
+                        console.log(err);
                         res.status(500).json({ message: { messageBody: "Error has occured (saving user)", messageError: true } });
                     })
             }
         })
         .catch(err => {
-            //console.log(err);
+            console.log(err);
             res.status(500).json({ message: { messageBody: "Error has occured (checking if user exists)", messageError: true } });
         })
 }

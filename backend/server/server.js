@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan'
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser';
 import connectMongodb from './config/mongodb.js';
 import authRouter from './routes/authRouter.js'
@@ -26,6 +27,7 @@ const app = express(); // Init app
 app.use(morgan('dev')); // Request log
 app.use(cookieParser());
 app.use(express.json()); // Parse json data from client
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.send('API is running...');

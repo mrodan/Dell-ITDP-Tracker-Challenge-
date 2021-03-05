@@ -24,8 +24,10 @@
   },
   "homepage": "https://github.com/mrodan/Dell-ITDP-Tracker-Challenge-#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "chart.js": "^2.9.4",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",

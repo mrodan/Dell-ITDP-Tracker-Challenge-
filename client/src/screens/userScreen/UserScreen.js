@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import './UserScreenStyle.css'
 import { Link } from 'react-router-dom'
-import { Row, Col, Image, Button, ListGroup } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup } from 'react-bootstrap'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import Chart from '../../components/chart/Chart.js'
 import EventTable from '../../components/event_table/EventTable.js'
@@ -11,16 +11,8 @@ import EventTable from '../../components/event_table/EventTable.js'
 const UserScreen = ({ match }) => {
     //const profileUser = usersTest.find(profileUser => profileUser._id === match.params.id);
     const [userRole, setUserRole] = useState("")
-
-    const [quarterEvents, setQuarterEvents] = useState(0)
-    const [yearlyGoal, setYearlyGoal] = useState(0)
     const [participations, setParticipations] = useState(0);
     const [attendedEvents, setAttendedEvents] = useState(0);
-    const [totalTrainingEvents, setTotalTrainingEvents] = useState(2);
-    const [totalNetworkingEvents, setTotalNetworkingEvents] = useState(1);
-    const [totalTeamBuildingEvents, setTotalTeamBuildingEvents] = useState(1);
-    const [totalVolunteerEvents, setTotalVolunteerEvents] = useState(1);
-
     const [profileUser, setprofileUser] = useState({
         _id: "",
         username: "",
@@ -78,17 +70,14 @@ const UserScreen = ({ match }) => {
     const getEvents = async () => {
         await axios.get(`/users/events/${match.params.id}`)
             .then(res => {
-                //console.log("RES", res.data)
                 setUserEvents(res.data);
-                setParticipations(res.data.length);
-                console.log(participations)
+                console.log("req", userEvents);
 
             })
             .catch(err => {
                 console.log(err);
             })
     }
-
 
     // Get full role
     const getRole = () => {
@@ -103,10 +92,7 @@ const UserScreen = ({ match }) => {
     }
 
     const setTrackerData = () => {
-        console.log("TOTAL EVENTS TRACKER" + participations + "  qUEARTER GOAL" + profileUser.quarterGoal);
         let qEvents = (participations * 100) / profileUser.quarterGoal;
-        setQuarterEvents(qEvents)
-        //setYearlyGoal(llevo~~~~~~ * 100 / profileUser.yearlyGoal)
     }
 
     useEffect(() => {
@@ -114,13 +100,10 @@ const UserScreen = ({ match }) => {
         getRole();
         getEvents();
         //setTrackerData();
-    }, []) //[getEvents, getUser, getRole]
+    }, [])
 
     return (
         <>
-            <Link className='btn my-3' to='/'>
-                Go Back
-            </Link>
             <div>
                 <h1>User Information</h1>
             </div>
@@ -129,6 +112,7 @@ const UserScreen = ({ match }) => {
                 <Col md={6}>
                     <Image fluid className="profile-image" src="https://i.ibb.co/PwWsWKS/blank-profile-picture-973460-1280.png" alt={profileUser.fullName} />
                 </Col>
+                
                 <Col md={3}>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
@@ -164,50 +148,42 @@ const UserScreen = ({ match }) => {
                     </ListGroup>
                 </Col>
             </Row>
-            <Row>
-                <Col>
                     <Row>
                         <h1>Tracker</h1>
                     </Row>
-                    <Row className="try">
+                    <Row className="row-progbar">
                         <div>
-                            <h5>Quarter Goal</h5>
+                            <h5>Quarter Minimum Achievement</h5>
                         </div>
                         <div className="progress-bar">
-				            <ProgressBar animated now={0} />
-                            <p>{quarterEvents}</p>
+				            <ProgressBar animated now={Math.random() * (90 - 70) + 70} />
 			            </div>
                     </Row>
-                    <Row className="try">
+                    <Row className="row-progbar">
                         <div>
-                            <h5>Yearly Goal</h5>
+                            <h5>Yearly Minimum Achievement</h5>
                         </div>
                         <div className="progress-bar">
-				            <ProgressBar animated now={{quarterEvents}} />
+				            <ProgressBar animated now={Math.random() * (70 - 55) + 55} />
 			            </div>
                     </Row>
-                    <Row className="try">
+                    <Row className="row-progbar">
                         <div>
-                            <h5>Department Goal</h5>
+                            <h5>Department Minimum Achievment</h5>
                         </div>
                         <div className="progress-bar">
-				            <ProgressBar animated now={45} />
+				            <ProgressBar animated now={Math.random() * (75 - 65) + 65} />
 			            </div>
                     </Row>
-                </Col>
-                <Col>
                     <Row>
                         <Chart/>
                     </Row>
-
-                </Col>
-            </Row>
-
             <Row>
                 <h1>Events</h1>
             </Row>
             <Row>
                 <EventTable events={userEvents}/>
+                {console.log(userEvents)}
             </Row>
 
 

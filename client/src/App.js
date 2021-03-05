@@ -13,8 +13,6 @@ import UserScreen from './screens/userScreen/UserScreen'
 import EventScreen from './screens/event/EventScreen'
 
 function App() {
-  //const { user, setUser, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-
   return (
     <Router>
       <Header/>

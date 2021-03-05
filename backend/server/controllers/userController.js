@@ -83,12 +83,30 @@ export const registerToEvent = async (req, res) => {
 // @route GET /users/events:id
 // @access Authenticated
 export const getUserEvents = async (req, res) => {
-    await Participation.find({participant: req.params.id}).populate("event")//populate('name')
+    await Participation.find({participant: req.params.id}).populate("event")
         .then(events => {
             return res.status(200).send(events);
         })
         .catch(err => {
             console.log(err);
             return res.status(403).json({ message: { messageBody: "Error getting user from DB", messageError: true } });
+        })
+}
+
+// @desc Fetch from search bar
+// @route GET /users/searchbar
+// @access PM
+export const searchUser = (req, res) => {
+    if (req.body.searchValue == "")
+        return res.status(200);
+
+    const searchPattern = new RegExp('^' + req.body.searchValue);
+    User.find({ fullName: { $regex: searchPattern } })
+        .select('_id username fullName profileImage_PublicId')
+        .then(user => {
+            return res.status(200).json({ user })
+        })
+        .catch(err => {
+            return res.status(403).json({ message: { messageBody: "Error searching user from DB", messageError: true } });
         })
 }

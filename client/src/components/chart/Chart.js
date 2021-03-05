@@ -19,9 +19,11 @@ const Chart = () => {
 
     return (
         <>
-            <Pie data={data}></Pie>
+            <Pie data={data} options={{ maintainAspectRatio: false}}></Pie>
         </>
     )
 }
+
+// options={{ maintainAspectRatio: false, width: "100", height: '000' }}
 
 export default Chart
